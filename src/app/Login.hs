@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Login
-  ( mainMenu
+  ( login
   ) where
 
 import Database.PostgreSQL.Simple
@@ -15,7 +15,7 @@ prompt text = do
     hFlush stdout
     getLine
 
-mainMenu :: Connection -> IO ()
+login :: Connection -> IO ()
 mainMenu conn = do
     putStrLn "\nDo you want to log in or create an account?"
     putStrLn "1 - Log in"
