@@ -16,7 +16,7 @@ prompt text = do
     getLine
 
 login :: Connection -> IO ()
-mainMenu conn = do
+login conn = do
     putStrLn "\nDo you want to log in or create an account?"
     putStrLn "1 - Log in"
     putStrLn "2 - Create account"
@@ -27,4 +27,4 @@ mainMenu conn = do
         "1" -> doLogin conn
         "2" -> doCreateAccount conn
         "3" -> putStrLn "Goodbye!"
-        _   -> putStrLn "Invalid option." >> mainMenu conn
+        _   -> putStrLn "Invalid option." >> login conn
