@@ -9,7 +9,8 @@ import Database.PostgreSQL.Simple.FromRow
 import Database.PostgreSQL.Simple.ToRow
 import Database.PostgreSQL.Simple.ToField (ToField(..))
 
-data Resource = Resource {   
+data Resource = Resource 
+    {   
     resourceId :: Int,
     title :: String,
     annotation :: String,
@@ -18,13 +19,15 @@ data Resource = Resource {
     openedAt :: UTCTime,
     timeOfUsing :: Int,
     address :: String
-} deriving (Show, Generic)
+    } 
+    deriving (Show, Generic)
 
 instance FromRow Resource where
     fromRow = Resource <$> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field
 
 instance ToRow Resource where
-    toRow r = [
+    toRow r = 
+        [
         toField (resourceId r),
         toField (title r),
         toField (annotation r),
@@ -32,30 +35,37 @@ instance ToRow Resource where
         toField (purpose r),
         toField (openedAt r),
         toField (timeOfUsing r),
-        toField (address r),
-    ]
+        toField (address r)
+        ]
 
-data User = User {   
+data User = User 
+  {   
     userId :: Int,
-    username :: String,
-} deriving (Show, Generic)
+    username :: String
+  }
+  deriving (Show, Generic)
 
 instance FromRow User where
     fromRow = User <$> field <*> field
 
 instance ToRow User where
-    toRow u = [
+    toRow u = 
+        [
         toField (userId u),
         toField (username u)
-    ]
+        ]
 
-data Author = Author {
+data Author = Author 
+    {
     authorId :: Int,
     name :: String,
     surname:: String
-} deriving (Show, Generic)
+    } 
+    deriving (Show, Generic)
 
-data Type = Type {
+data Type = Type 
+    {
     typeid :: Int,
-    type :: String
-} deriving (Show, Generic)
+    typeName :: String
+    } 
+    deriving (Show, Generic)
