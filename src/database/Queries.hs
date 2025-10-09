@@ -1,6 +1,10 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Queries where
 
-import Models
+import Models 
+import Connection
+import Database.PostgreSQL.Simple
 
 getAllResources :: Connection -> IO [Resource]
 getAllResources conn = query_ conn "SELECT * FROM resources"
@@ -15,9 +19,10 @@ insertResource conn resource = do
 getAllUsers :: Connection -> IO [User]
 getAllUsers conn = query_ conn "SELECT * FROM users"
 
-insertUser :: Connection -> User -> IO ()
-insertUser conn user = do
-  _ <- execute conn
-         "INSERT INTO users (username) VALUES (?)"
-         user
-  putStrLn "user inserted"
+insertUser :: Connection -> String -> IO User
+insertUser conn username = do
+    [Only userId] <- query conn
+        "INSERT INTO users (username) VALUES (?) RETURNING id"
+        (Only username)
+    putStrLn "user inserted"
+    return (User userId username)
