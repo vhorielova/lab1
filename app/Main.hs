@@ -1,8 +1,12 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Main where
-    
+
+import Database.PostgreSQL.Simple
+import Connection (connectDB, closeDB)
+
 main :: IO ()
 main = do
-    putStrLn "Enter a number:"
-    input <- getLine
-    let n = read input :: Int
-    print (n * 2)
+    conn <- connectDB
+
+    closeDB conn
