@@ -20,6 +20,16 @@
   (major1) == 4 && (major2) <  18 || \
   (major1) == 4 && (major2) == 18 && (minor) <= 3)
 #endif /* MIN_VERSION_base */
+/* package lab1-0.1.0.0 */
+#ifndef VERSION_lab1
+#define VERSION_lab1 "0.1.0.0"
+#endif /* VERSION_lab1 */
+#ifndef MIN_VERSION_lab1
+#define MIN_VERSION_lab1(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  1 || \
+  (major1) == 0 && (major2) == 1 && (minor) <= 0)
+#endif /* MIN_VERSION_lab1 */
 /* package postgresql-simple-0.6.5.1 */
 #ifndef VERSION_postgresql_simple
 #define VERSION_postgresql_simple "0.6.5.1"
@@ -30,6 +40,26 @@
   (major1) == 0 && (major2) <  6 || \
   (major1) == 0 && (major2) == 6 && (minor) <= 5)
 #endif /* MIN_VERSION_postgresql_simple */
+/* package resource-pool-0.5.0.0 */
+#ifndef VERSION_resource_pool
+#define VERSION_resource_pool "0.5.0.0"
+#endif /* VERSION_resource_pool */
+#ifndef MIN_VERSION_resource_pool
+#define MIN_VERSION_resource_pool(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  5 || \
+  (major1) == 0 && (major2) == 5 && (minor) <= 0)
+#endif /* MIN_VERSION_resource_pool */
+/* package time-1.12.2 */
+#ifndef VERSION_time
+#define VERSION_time "1.12.2"
+#endif /* VERSION_time */
+#ifndef MIN_VERSION_time
+#define MIN_VERSION_time(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  12 || \
+  (major1) == 1 && (major2) == 12 && (minor) <= 2)
+#endif /* MIN_VERSION_time */
 
 /* tool gcc-15.0.0 */
 #ifndef TOOL_VERSION_gcc
