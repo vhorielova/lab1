@@ -5,6 +5,8 @@ module Queries where
 import Models 
 import Connection
 import Database.PostgreSQL.Simple
+import Data.Time (getCurrentTime)
+
 
 getAllResources :: Connection -> IO [Resource]
 getAllResources conn = query_ conn "SELECT * FROM resources"
@@ -38,3 +40,21 @@ linkResourceAuthor conn resId authId = do
 getAllAuthors :: Connection -> IO [Author]
 getAllAuthors conn = do
   query_ conn "SELECT id, name, surname FROM authors"
+
+updateResourceUsage :: Connection -> Int -> Int -> IO ()
+updateResourceUsage conn resId minutes = do
+  currentTime <- getCurrentTime
+  _ <- execute conn
+    "UPDATE resources \
+    \SET last_used = ?, time_of_using = time_of_using + ? \
+    \WHERE id = ?"
+    (currentTime, minutes, resId)
+  putStrLn "resource updated"
+
+linkResourceUser :: Connection -> Int -> Int -> Int -> IO ()
+linkResourceUser conn resId userId duration = do
+  currentTime <- getCurrentTime
+  _ <- execute conn
+    "INSERT INTO resource_user (resource_id, user_id, used_at, duration) VALUES (?,?,?,?)"
+    (resId, userId, currentTime, duration)
+  putStrLn "linked resource and user"
