@@ -1,5 +1,5 @@
-CREATE TABLE "resourses" (
-  "id" increment PRIMARY KEY,
+CREATE TABLE "resources" (
+  "id" serial PRIMARY KEY,
   "title" varchar(250),
   "annotation" varchar,
   "type_id" int,
@@ -9,40 +9,40 @@ CREATE TABLE "resourses" (
   "address" varchar
 );
 
-CREATE TABLE "resourse_author" (
-  "id" increment PRIMARY KEY,
+CREATE TABLE "resource_author" (
+  "id" serial PRIMARY KEY,
   "author_id" int,
-  "resourse_id" int
+  "resource_id" int
 );
 
 CREATE TABLE "authors" (
-  "id" increment PRIMARY KEY,
+  "id" serial PRIMARY KEY,
   "name" varchar(250),
   "surname" varchar(250)
 );
 
 CREATE TABLE "types" (
-  "id" increment PRIMARY KEY,
+  "id" serial PRIMARY KEY,
   "name" varchar(250)
 );
 
 CREATE TABLE "users" (
-  "id" increment PRIMARY KEY,
+  "id" serial PRIMARY KEY,
   "username" varchar
 );
 
-CREATE TABLE "resourse_user" (
-  "id" increment PRIMARY KEY,
+CREATE TABLE "resource_user" (
+  "id" serial PRIMARY KEY,
   "user_id" int,
-  "resourse_id" int
+  "resource_id" int
 );
 
-ALTER TABLE "resourses" ADD FOREIGN KEY ("type_id") REFERENCES "types" ("id");
+ALTER TABLE "resources" ADD FOREIGN KEY ("type_id") REFERENCES "types" ("id");
 
-ALTER TABLE "resourse_author" ADD FOREIGN KEY ("author_id") REFERENCES "authors" ("id");
+ALTER TABLE "resource_author" ADD FOREIGN KEY ("author_id") REFERENCES "authors" ("id");
 
-ALTER TABLE "resourse_author" ADD FOREIGN KEY ("resourse_id") REFERENCES "resourses" ("id");
+ALTER TABLE "resource_author" ADD FOREIGN KEY ("resource_id") REFERENCES "resources" ("id");
 
-ALTER TABLE "resourse_user" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
+ALTER TABLE "resource_user" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 
-ALTER TABLE "resourse_user" ADD FOREIGN KEY ("resourse_id") REFERENCES "resourses" ("id");
+ALTER TABLE "resource_user" ADD FOREIGN KEY ("resource_id") REFERENCES "resources" ("id");
