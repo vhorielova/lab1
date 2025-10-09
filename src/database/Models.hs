@@ -4,7 +4,7 @@
 module Models where
 
 import GHC.Generics (Generic)
-import Data.Time (UTCTime)
+import Data.Time (LocalTime)
 import Database.PostgreSQL.Simple.FromRow
 import Database.PostgreSQL.Simple.ToRow
 import Database.PostgreSQL.Simple.ToField (ToField(..))
@@ -16,7 +16,7 @@ data Resource = Resource
     annotation :: String,
     typeId :: Int,
     purpose :: String,
-    openedAt :: UTCTime,
+    openedAt :: LocalTime,
     timeOfUsing :: Int,
     address :: String
     } 
@@ -62,6 +62,15 @@ data Author = Author
     surname:: String
     } 
     deriving (Show, Generic)
+
+instance FromRow Author where
+  fromRow = Author <$> field <*> field <*> field
+
+instance ToRow Author where
+  toRow au = 
+    [toField (name au),
+     toField (surname au)
+    ]
 
 data Type = Type 
     {
