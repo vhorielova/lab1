@@ -62,6 +62,13 @@ userMenu conn user = do
             resIdStr <- prompt "Enter resource ID to use:"
             let resId = read resIdStr :: Int
             putStrLn $ "You are now using resource ID: " ++ show resId
+
+            minutesStr <- prompt "Enter usage time (in minutes):"
+            let minutes = read minutesStr :: Int
+
+            updateResourceUsage conn resId minutes
+            linkResourceUser conn resId (userId user) minutes
+
             userMenu conn user
 
         "5" -> putStrLn "Goodbye!"
