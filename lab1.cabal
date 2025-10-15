@@ -71,7 +71,8 @@ executable lab1
                       postgresql-simple ^>= 0.6,
                       resource-pool,
                       time,
-                      lab1
+                      lab1,
+                      dotenv
 
 
     -- Directories containing source files.
@@ -84,7 +85,6 @@ library
     hs-source-dirs:   src, src/database/, src/app/
 
     exposed-modules:  Connection, 
-                      Lib, 
                       Models,
                       Login,
                       ResourceActions,
@@ -94,6 +94,7 @@ library
     build-depends:    base,
                       postgresql-simple,
                       resource-pool,
-                      time
+                      time,
+                      dotenv
 
     default-language: Haskell2010
